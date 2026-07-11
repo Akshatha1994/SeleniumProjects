@@ -27,8 +27,8 @@ public class EndToEndAutomationTestingInTheSameClass {
 		 * Logout
 		 */
 		initialSetup(driver, "https://www.saucedemo.com/");
-		loginScreen(driver);
-		dropdownScreen(driver, "//select[@class='product_sort_container']");
+		loginScreen(driver, By.id("user-name"), By.id("password"), By.name("login-button"));
+		dropdownScreen(driver, By.xpath("//select[@class='product_sort_container']"));
 		addToCartScreen(driver, "add-to-cart-sauce-labs-bolt-t-shirt", "add-to-cart-sauce-labs-bike-light", "//a[@class='shopping_cart_link']");
 		checkout(driver);
 		verifyConfirmation(driver);
@@ -43,16 +43,16 @@ public class EndToEndAutomationTestingInTheSameClass {
 		driver.get(url);
 	}
 	
-	public static void loginScreen(WebDriver driver)
+	public static void loginScreen(WebDriver driver, By namelocator, By passwordlocator, By loginButton)
 	{
-		driver.findElement(By.id("user-name")).sendKeys("standard_user");
-		driver.findElement(By.id("password")).sendKeys("secret_sauce");
-		driver.findElement(By.name("login-button")).click();
+		driver.findElement(namelocator).sendKeys("standard_user");
+		driver.findElement(passwordlocator).sendKeys("secret_sauce");
+		driver.findElement(loginButton).click();
 	}
 	
-	public static void dropdownScreen(WebDriver driver, String locator)
+	public static void dropdownScreen(WebDriver driver, By locator)
 	{
-		Select optionsList = new Select(driver.findElement(By.xpath(locator)));
+		Select optionsList = new Select(driver.findElement(locator));
 		optionsList.selectByVisibleText("Price (low to high)");
 	}
 	
