@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="testNG Suite" verbose="1" >
+  <test name="Automation Exercise Test" >
+    <classes>
+       <class name="completeFrameworkUsingPOMAndTestNG.basePage" />
+    </classes>
+  </test>
+  </suite>
