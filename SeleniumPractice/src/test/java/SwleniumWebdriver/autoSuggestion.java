@@ -15,18 +15,32 @@ public class autoSuggestion
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.google.com");
+		
+		
 		driver.findElement(By.xpath("//textarea[@aria-label = 'Search']")).sendKeys("qspiders");
 		Thread.sleep(3000);
 		List<WebElement> count = driver.findElements(By.xpath("//ul[@role = 'listbox']//li"));
 		System.out.println(count.size());
-		for (int i = 0 ; i < count.size() ; i++)
+		
+		
+		for (WebElement list : count)
 		{
-			System.out.println(count.get(i).getAttribute("data-entityname"));
-			
+			String text = list.getAttribute("data-entityname");
+			System.out.println(text);
+			if (text.equals("QSpiders Hebbal"))
+			{
+				list.click();
+				break;
+			}
 		}
-		count.get(count.size() - 1).click();
-		Thread.sleep(3000);
-		driver.close();
+		/*
+		 * for (int i = 0 ; i < count.size() ; i++) {
+		 * System.out.println(count.get(i).getAttribute("data-entityname"));
+		 * 
+		 * } count.get(count.size() - 1).click(); Thread.sleep(3000);
+		 */
+		//driver.close();
 	}
+
 
 }
